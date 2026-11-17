@@ -39,12 +39,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Configurar Provider Microsoft Entra ID
-const microsoftProvider = new OAuthProvider("microsoft.com");
-microsoftProvider.setCustomParameters({
-  prompt: "select_account",
-  domain_hint: "alunos.epbjc.pt"
-});
 
 // Elementos DOM
 const loginSection = document.getElementById("login-section");
