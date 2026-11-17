@@ -32,7 +32,7 @@ const firebaseConfig = {
 const microsoftProvider = new OAuthProvider("microsoft.com");
 microsoftProvider.setCustomParameters({
   prompt: "select_account",
-  tenant: "4334e4b0-48f4-4a76-ae54-cec847437a72" // Substitui pelo Tenant ID fornecido pela escola ou copiado do Azure
+  tenant: "4334e4b0-48f4-4a76-ae54-cec847437a72"
 });
 
 const app = initializeApp(firebaseConfig);
