@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Verifica se o utilizador está autenticado, tem domínio @alunos.epbjc.pt e está ativo na whitelist
+    function isAuthorized() {
+      return request.auth != null &&
+        request.auth.token.email.matches('.*@alunos[.]epbjc[.]pt') &&
+        exists(/databases/$(database)/documents/authorizedUsers/$(request.auth.token.email.lower())) &&
+        get(/databases/$(database)/documents/authorizedUsers/$(request.auth.token.email.lower())).data.active == true;
+    }
+
+    // Coleção de requisições
+    match /requisicoes/{requestId} {
+      // O aluno só pode ler os seus próprios pedidos
+      allow read: if isAuthorized() && resource.data.uid == request.auth.uid;
+      
+      // O aluno só pode criar pedidos associados ao seu próprio UID e com estado inicial Pendente
+      allow create: if isAuthorized() &&
+        request.resource.data.uid == request.auth.uid &&
+        request.resource.data.estado == "Pendente";
+      
+      // Apenas administradores podem atualizar estados ou eliminar pedidos
+      allow update, delete: if request.auth != null &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Coleção de utilizadores autorizados (whitelist)
+    match /authorizedUsers/{userId} {
+      allow read: if request.auth != null;
+      allow write: if false; // Apenas gerido pelo Admin SDK ou consola Firebase
+    }
+
+    // Coleção de administradores
+    match /admins/{adminId} {
+      allow read: if request.auth != null && request.auth.uid == adminId;
+      allow write: if false;
+    }
+  }
+}

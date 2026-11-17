@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EPBJC - Requisição de Equipamentos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>EPBJC — Requisição de Equipamentos</h1>
+    <div id="user-info" class="hidden">
+      <span id="user-email"></span>
+      <button id="btn-logout" class="btn-secondary">Terminar Sessão</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Secção de Login -->
+    <section id="login-section" class="card">
+      <h2>Acesso Institucional</h2>
+      <p>Inicia sessão com a tua conta Microsoft institucional (<code>@alunos.epbjc.pt</code>) para efetuar ou consultar requisições.</p>
+      <button id="btn-login" class="btn-primary">Entrar com Microsoft</button>
+      <p id="login-error" class="error-msg hidden"></p>
+    </section>
+
+    <!-- Secção da Aplicação (Autenticado) -->
+    <section id="app-section" class="hidden">
+      <div class="card">
+        <h2>Nova Requisição</h2>
+        <form id="req-form">
+          <div class="form-group">
+            <label for="equipamento">Equipamento</label>
+            <select id="equipamento" required>
+              <option value="">-- Seleciona um equipamento --</option>
+              <option value="Portátil01">Portátil01</option>
+              <option value="Portátil02">Portátil02</option>
+              <option value="Tablet01">Tablet01</option>
+              <option value="Tablet02">Tablet02</option>
+              <option value="Projetor01">Projetor01</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dataPedido">Data do Pedido</label>
+              <input type="date" id="dataPedido" required />
+            </div>
+            <div class="form-group">
+              <label for="devolucaoPrevista">Devolução Prevista</label>
+              <input type="date" id="devolucaoPrevista" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="observacoes">Observações (opcional, máx. 500 caracteres)</label>
+            <textarea id="observacoes" rows="3" maxlength="500" placeholder="Ex: Necessário para apresentação na sala 12..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Submeter Requisição</button>
+          <p id="form-feedback" class="feedback-msg hidden"></p>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>As Minhas Requisições</h2>
+        <div id="lista-requisicoes">
+          <p class="muted">A carregar pedidos...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
