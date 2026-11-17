@@ -28,6 +28,13 @@ const firebaseConfig = {
   measurementId: "G-YB1RBTEZZF"
 };
 
+// Configurar Provider Microsoft Entra ID com o Tenant ID da escola
+const microsoftProvider = new OAuthProvider("microsoft.com");
+microsoftProvider.setCustomParameters({
+  prompt: "select_account",
+  tenant: "4334e4b0-48f4-4a76-ae54-cec847437a72" // Substitui pelo Tenant ID fornecido pela escola ou copiado do Azure
+});
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
