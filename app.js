@@ -16,14 +16,16 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// SUBSTITUI PELOS DADOS REAIS DO TEU PROJETO FIREBASE
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "COLOCA_AQUI_A_TUA_API_KEY",
-  authDomain: "COLOCA_AQUI_O_TEU_AUTH_DOMAIN",
-  projectId: "COLOCA_AQUI_O_TEU_PROJECT_ID",
-  storageBucket: "COLOCA_AQUI_O_TEU_STORAGE_BUCKET",
-  messagingSenderId: "COLOCA_AQUI_O_SENDER_ID",
-  appId: "COLOCA_AQUI_O_APP_ID"
+  apiKey: "AIzaSyAK-ISoPBWvmrTQA33OMJFi3v8df7TJc7Q",
+  authDomain: "requesicoes-6c040.firebaseapp.com",
+  projectId: "requesicoes-6c040",
+  storageBucket: "requesicoes-6c040.firebasestorage.app",
+  messagingSenderId: "362671034575",
+  appId: "1:362671034575:web:7d78efa005673f647467ba",
+  measurementId: "G-YB1RBTEZZF"
 };
 
 const app = initializeApp(firebaseConfig);
