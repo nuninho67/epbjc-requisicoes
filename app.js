@@ -16,8 +16,6 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAK-ISoPBWvmrTQA33OMJFi3v8df7TJc7Q",
   authDomain: "requesicoes-6c040.firebaseapp.com",
@@ -28,13 +26,16 @@ const firebaseConfig = {
   measurementId: "G-YB1RBTEZZF"
 };
 
-// Configurar Provider Microsoft Entra ID com o Tenant ID da escola
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Configurar Provider Microsoft Entra ID limpo
 const microsoftProvider = new OAuthProvider("microsoft.com");
 microsoftProvider.setCustomParameters({
   prompt: "select_account",
-  tenant: "4334e4b0-48f4-4a76-ae54-cec847437a72"
+  domain_hint: "alunos.epbjc.pt"
 });
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
